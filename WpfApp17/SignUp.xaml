@@ -1,0 +1,27 @@
+﻿<Page x:Class="WpfApp17.SignUp"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp17"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" Background="Wheat" d:DesignWidth="800"
+      Title="SignUp">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="500*"/>
+            <ColumnDefinition Width="399*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="name" HorizontalAlignment="Left" FontSize="30" Margin="142,11,0,0" VerticalAlignment="Top"/>
+        <Label Content="Nationality" HorizontalAlignment="Left" FontSize="30" Margin="74,68,0,0" VerticalAlignment="Top" Grid.Column="1" Width="186"/>
+        <TextBox Style="{StaticResource TextStyles}" x:Name="txtName" HorizontalAlignment="Left" Margin="125,76,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="133" Height="34" RenderTransformOrigin="0.5,0.5">
+
+        </TextBox>
+        <Label Content="ID" HorizontalAlignment="Left" FontSize="30" Margin="158,141,0,0" VerticalAlignment="Top" Width="41"/>
+        <TextBox Style="{StaticResource TextStyles}" x:Name="txtID" HorizontalAlignment="Left" Margin="121,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="135" Height="36"/>
+        <TextBox Style="{StaticResource TextStyles}" x:Name="txtNationality" HorizontalAlignment="Left" Margin="74,141,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="198" Height="50" Grid.Column="1"/>
+
+        <Button Content="sign up" HorizontalAlignment="Left" FontSize="30" Margin="125,295,0,0" VerticalAlignment="Top" Width="154" Height="65" Click="Button_Click"/>
+    </Grid>
+</Page>

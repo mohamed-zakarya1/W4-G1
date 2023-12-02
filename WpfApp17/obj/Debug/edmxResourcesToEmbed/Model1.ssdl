@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bookstoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="author">
+    <Key>
+      <PropertyRef Name="author_id" />
+    </Key>
+    <Property Name="author_id" Type="int" Nullable="false" />
+    <Property Name="author_name" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="nationality" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="book">
+    <Key>
+      <PropertyRef Name="book_id" />
+    </Key>
+    <Property Name="book_id" Type="int" Nullable="false" />
+    <Property Name="title" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="author_id" Type="int" />
+    <Property Name="genre_id" Type="int" />
+    <Property Name="price" Type="int" Nullable="false" />
+    <Property Name="publication_year" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="customer_id" Type="int" Nullable="false" />
+    <Property Name="first_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="list_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="costomer_address" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="genre">
+    <Key>
+      <PropertyRef Name="gener_id" />
+    </Key>
+    <Property Name="gener_id" Type="int" Nullable="false" />
+    <Property Name="genre_name" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="order1">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="int" Nullable="false" />
+    <Property Name="cutomer_id" Type="int" />
+    <Property Name="book_id" Type="int" />
+    <Property Name="order_date" Type="date" Nullable="false" />
+    <Property Name="quantity" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__book__author_id__4D94879B">
+    <End Role="author" Type="Self.author" Multiplicity="0..1" />
+    <End Role="book" Type="Self.book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="author">
+        <PropertyRef Name="author_id" />
+      </Principal>
+      <Dependent Role="book">
+        <PropertyRef Name="author_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__book__genre_id__4E88ABD4">
+    <End Role="genre" Type="Self.genre" Multiplicity="0..1" />
+    <End Role="book" Type="Self.book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="genre">
+        <PropertyRef Name="gener_id" />
+      </Principal>
+      <Dependent Role="book">
+        <PropertyRef Name="genre_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__order1__book_id__5441852A">
+    <End Role="book" Type="Self.book" Multiplicity="0..1" />
+    <End Role="order1" Type="Self.order1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="book">
+        <PropertyRef Name="book_id" />
+      </Principal>
+      <Dependent Role="order1">
+        <PropertyRef Name="book_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__order1__cutomer___534D60F1">
+    <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+    <End Role="order1" Type="Self.order1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="customer_id" />
+      </Principal>
+      <Dependent Role="order1">
+        <PropertyRef Name="cutomer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="bookstoreModelStoreContainer">
+    <EntitySet Name="author" EntityType="Self.author" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="book" EntityType="Self.book" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="genre" EntityType="Self.genre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="order1" EntityType="Self.order1" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__book__author_id__4D94879B" Association="Self.FK__book__author_id__4D94879B">
+      <End Role="author" EntitySet="author" />
+      <End Role="book" EntitySet="book" />
+    </AssociationSet>
+    <AssociationSet Name="FK__book__genre_id__4E88ABD4" Association="Self.FK__book__genre_id__4E88ABD4">
+      <End Role="genre" EntitySet="genre" />
+      <End Role="book" EntitySet="book" />
+    </AssociationSet>
+    <AssociationSet Name="FK__order1__book_id__5441852A" Association="Self.FK__order1__book_id__5441852A">
+      <End Role="book" EntitySet="book" />
+      <End Role="order1" EntitySet="order1" />
+    </AssociationSet>
+    <AssociationSet Name="FK__order1__cutomer___534D60F1" Association="Self.FK__order1__cutomer___534D60F1">
+      <End Role="customer" EntitySet="customer" />
+      <End Role="order1" EntitySet="order1" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
